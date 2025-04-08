@@ -2,17 +2,23 @@ package com.esm.taskify.feature_todo.domain.util
 
 
 sealed class TodoItemOrder(
-    val orderDirection: OrderDirection
-){
-    class Title(orderDirection: OrderDirection): TodoItemOrder(orderDirection)
-    class Time(orderDirection: OrderDirection): TodoItemOrder(orderDirection)
-    class Completed(orderDirection: OrderDirection): TodoItemOrder(orderDirection)
+    val sortingDirection: SortingDirection,
+    val showArchived: Boolean
+) {
+    class Title(sortingDirection: SortingDirection, showArchived: Boolean) :
+        TodoItemOrder(sortingDirection, showArchived)
 
-    fun copy(orderDirection: OrderDirection): TodoItemOrder{
-        return when(this){
-            is Title -> Title(orderDirection)
-            is Time -> Time(orderDirection)
-            is Completed -> Completed(orderDirection)
+    class Time(sortingDirection: SortingDirection, showArchived: Boolean) :
+        TodoItemOrder(sortingDirection, showArchived)
+
+    class Completed(sortingDirection: SortingDirection, showArchived: Boolean) :
+        TodoItemOrder(sortingDirection, showArchived)
+
+    fun copy(sortingDirection: SortingDirection, showArchived: Boolean): TodoItemOrder {
+        return when (this) {
+            is Title -> Title(sortingDirection, showArchived)
+            is Time -> Title(sortingDirection, showArchived)
+            is Completed -> Title(sortingDirection, showArchived)
         }
     }
 }

@@ -6,18 +6,6 @@ import androidx.room.Room
 import com.esm.taskify.feature_todo.data.local.TodoDao
 import com.esm.taskify.feature_todo.data.local.TodoDatabase
 import com.esm.taskify.feature_todo.data.remote.TodoApi
-import com.esm.taskify.feature_todo.domain.repo.TodoListRepo
-import com.esm.taskify.feature_todo.domain.use_case.AddTodoItemUseCase
-import com.esm.taskify.feature_todo.domain.use_case.DeleteTodoItemUseCase
-import com.esm.taskify.feature_todo.domain.use_case.GetSortedTodoItemsUseCase
-import com.esm.taskify.feature_todo.domain.use_case.GetTodoItemFromRemoteUseCase
-import com.esm.taskify.feature_todo.domain.use_case.GetTodoItemsFromCacheArchiveFilteredUseCase
-import com.esm.taskify.feature_todo.domain.use_case.GetTodoItemsFromCacheUseCase
-import com.esm.taskify.feature_todo.domain.use_case.GetTodoItemsFromRemoteArchiveFilteredUseCase
-import com.esm.taskify.feature_todo.domain.use_case.TodoUseCases
-import com.esm.taskify.feature_todo.domain.use_case.ToggleArchivedTodoItemUseCase
-import com.esm.taskify.feature_todo.domain.use_case.ToggleCompletedTodoItemUseCase
-import com.esm.taskify.feature_todo.domain.use_case.UpdateTodoItemUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,32 +18,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object TodoModule {
-
-
-    @Provides
-    @Singleton
-    fun providesTodoUseCases(repo: TodoListRepo): TodoUseCases {
-        val getTodoItemsFromCacheUseCase = GetTodoItemsFromCacheUseCase(repo)
-        val getSortedTodoItemsUseCase = GetSortedTodoItemsUseCase(repo)
-        val getTodoItemsFromRemoteArchiveFilteredUseCase = GetTodoItemsFromRemoteArchiveFilteredUseCase(
-            getSortedTodoItemsUseCase = getSortedTodoItemsUseCase
-        )
-        return TodoUseCases(
-            getSortedTodoItemsUseCase = getSortedTodoItemsUseCase,
-            addTodoItemUseCase = AddTodoItemUseCase(repo),
-            deleteTodoItemUseCase = DeleteTodoItemUseCase(repo),
-            toggleCompletedTodoItemUseCase = ToggleCompletedTodoItemUseCase(repo),
-            toggleArchivedTodoItemUseCase = ToggleArchivedTodoItemUseCase(repo),
-            getTodoItemsFromCacheUseCase = GetTodoItemsFromCacheUseCase(repo),
-            getTodoItemFromRemoteUseCase = GetTodoItemFromRemoteUseCase(repo),
-            updateTodoItemUseCase = UpdateTodoItemUseCase(repo),
-            getTodoItemsFromCacheArchiveFilteredUseCase = GetTodoItemsFromCacheArchiveFilteredUseCase(
-                getTodoItemsFromCacheUseCase = getTodoItemsFromCacheUseCase
-            ),
-            getTodoItemsFromRemoteArchiveFilteredUseCase = getTodoItemsFromRemoteArchiveFilteredUseCase
-        )
-    }
-
 
     @Provides
     fun providesRetrofitApi(retrofit: Retrofit): TodoApi {
