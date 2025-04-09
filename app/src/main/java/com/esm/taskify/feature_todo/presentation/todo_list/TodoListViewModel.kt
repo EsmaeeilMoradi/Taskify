@@ -9,6 +9,8 @@ import com.esm.taskify.feature_todo.data.di.IoDispatcher
 import com.esm.taskify.feature_todo.domain.model.TodoItem
 import com.esm.taskify.feature_todo.domain.use_case.TodoUseCaseResult
 import com.esm.taskify.feature_todo.domain.use_case.TodoUseCases
+import com.esm.taskify.feature_todo.domain.util.SortingDirection
+import com.esm.taskify.feature_todo.domain.util.TodoItemOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,7 +24,9 @@ class TodoListViewModel @Inject constructor(
     private val todoUseCases: TodoUseCases,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val _state = mutableStateOf(TodoListState())
+   // private val _state = mutableStateOf(TodoListState())
+   private val _state = mutableStateOf(TodoListState(todoItemOrder = TodoItemOrder.Time(
+       SortingDirection.Down, true)))
     val state: State<TodoListState> = _state
 
     private var undoTodoItem: TodoItem? = null

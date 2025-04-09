@@ -17,8 +17,8 @@ sealed class TodoItemOrder(
     fun copy(sortingDirection: SortingDirection, showArchived: Boolean): TodoItemOrder {
         return when (this) {
             is Title -> Title(sortingDirection, showArchived)
-            is Time -> Title(sortingDirection, showArchived)
-            is Completed -> Title(sortingDirection, showArchived)
+            is Time -> Time(sortingDirection, showArchived)
+            is Completed -> Completed(sortingDirection, showArchived)
         }
     }
 }
