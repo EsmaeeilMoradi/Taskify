@@ -93,5 +93,6 @@ class TodoListRepoImpl(
                 }else -> throw e
             }
         }
+        dao.deleteTodoItem(todo.toLocalTodoItem())
     }
 }

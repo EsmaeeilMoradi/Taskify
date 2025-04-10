@@ -8,12 +8,16 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.esm.taskify.feature_todo.presentation.todo_list.TodoListScreen
 import com.esm.taskify.feature_todo.presentation.todo_list.TodoListViewModel
+import com.esm.taskify.feature_todo.presentation.todo_new_update.TodoNewUpdateScreen
 import com.esm.taskify.feature_todo.presentation.util.Screen
+import com.esm.taskify.feature_todo.presentation.util.Screen.TodoNewUpdateScreen
 import com.esm.taskify.ui.theme.TodoTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,8 +46,22 @@ class MainActivity : ComponentActivity() {
                                 viewModel = listViewModel
                             )
                         }
-                        composable(route = Screen.TodoNewUpdateScreen.route){
-                            //TODO
+                        composable(
+                            route = Screen.TodoNewUpdateScreen.route + "?todoId={todoId}",
+                            arguments = listOf(
+                                navArgument(
+                                    name = "todoId"
+                                ){
+                                    type = NavType.IntType
+                                    defaultValue = -1
+                                }
+                            )
+                        ){
+                            TodoNewUpdateScreen(
+                                navController = navController
+                            )
+
+
                         }
                     }
                 }
