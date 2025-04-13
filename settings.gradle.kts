@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Taskify"
 include(":taskify")
+include(":news")
