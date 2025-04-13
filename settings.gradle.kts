@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Taskify"
-include(":app")
+include(":taskify")
