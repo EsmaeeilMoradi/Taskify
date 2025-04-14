@@ -3,8 +3,11 @@ package com.esm.taskify.feature_todo.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,6 +24,8 @@ import com.esm.taskify.feature_todo.presentation.todo_new_update.TodoNewUpdateSc
 import com.esm.taskify.feature_todo.presentation.util.Screen
 import com.esm.taskify.feature_todo.presentation.util.Screen.TodoNewUpdateScreen
 import com.esm.taskify.ui.theme.TodoTheme
+import com.esm.taskify_news.presentation.onboarding.OnBoardingScreen
+import com.esm.taskify_news.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -31,6 +36,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         setContent {
+            NewsAppTheme {
+                Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background))
+                {
+                    OnBoardingScreen()
+                }
+            }
             //TodoFunction()
         }
     }
