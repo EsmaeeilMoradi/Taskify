@@ -1,6 +1,7 @@
 package com.esm.taskify.feature_todo.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -14,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -25,19 +27,34 @@ import com.esm.taskify.feature_todo.presentation.todo_new_update.TodoNewUpdateSc
 import com.esm.taskify.feature_todo.presentation.util.Screen
 import com.esm.taskify.feature_todo.presentation.util.Screen.TodoNewUpdateScreen
 import com.esm.taskify.ui.theme.TodoTheme
+import com.esm.taskify_news.domain.usecases.app_entry.AppEntryUseCases
 import com.esm.taskify_news.presentation.onboarding.OnBoardingScreen
 import com.esm.taskify_news.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var appEntryUseCases: AppEntryUseCases
+
+
+
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen()
+        lifecycleScope.launch {
+            appEntryUseCases.readAppEntry().collect {
+                Log.d("ESM", "onCreate: $it")
+
+            }
+        }
+
         setContent {
             NewsAppTheme {
                 Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background))
