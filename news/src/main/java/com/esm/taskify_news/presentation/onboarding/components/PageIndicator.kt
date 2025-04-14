@@ -1,4 +1,4 @@
-package com.esm.taskify_news.presentation.onboarding
+package com.esm.taskify_news.presentation.onboarding.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
