@@ -1,9 +1,10 @@
-package com.esm.taskify.feature_todo.presentation
+package com.esm.taskify.feature_todo.presentation.mainActivity
 
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +22,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.esm.taskify.feature_todo.presentation.navgraph.NavGraph
 import com.esm.taskify.feature_todo.presentation.todo_list.TodoListScreen
 import com.esm.taskify.feature_todo.presentation.todo_list.TodoListViewModel
 import com.esm.taskify.feature_todo.presentation.todo_new_update.TodoNewUpdateScreen
@@ -39,28 +41,21 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var useCases: AppEntryUseCases
-
+private val viewModel by viewModels<MainViewModel>()
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        installSplashScreen()
 
-        lifecycleScope.launch {
-            useCases.readAppEntry().collect {
-                Log.d("ESM", "onCreate: $it")
-            }
+
+        installSplashScreen().apply {
+            setKeepOnScreenCondition(condition = { viewModel.splashCondition.value })
         }
 
         setContent {
             NewsAppTheme {
-                Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background))
-                {
-                    val viewModel: OnBoardingViewModel = hiltViewModel()
-                    OnBoardingScreen(onEvent = viewModel::onEvent)
-
+                Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
+                    NavGraph(startDestination = viewModel.startDestination.value)
                 }
             }
             //TodoFunction()
