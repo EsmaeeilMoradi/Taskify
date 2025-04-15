@@ -1,9 +1,9 @@
 package com.esm.taskify.feature_todo.presentation.mainActivity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -29,19 +28,15 @@ import com.esm.taskify.feature_todo.presentation.todo_new_update.TodoNewUpdateSc
 import com.esm.taskify.feature_todo.presentation.util.Screen
 import com.esm.taskify.feature_todo.presentation.util.Screen.TodoNewUpdateScreen
 import com.esm.taskify.ui.theme.TodoTheme
-import com.esm.taskify_news.domain.usecases.app_entry.AppEntryUseCases
-import com.esm.taskify_news.presentation.onboarding.OnBoardingScreen
-import com.esm.taskify_news.presentation.onboarding.OnBoardingViewModel
 import com.esm.taskify_news.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-private val viewModel by viewModels<MainViewModel>()
+    private val viewModel by viewModels<MainViewModel>()
+
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,11 +44,14 @@ private val viewModel by viewModels<MainViewModel>()
 
 
         installSplashScreen().apply {
-            setKeepOnScreenCondition(condition = { viewModel.splashCondition.value })
+            setKeepOnScreenCondition {
+                viewModel.splashCondition.value
+            }
         }
 
         setContent {
             NewsAppTheme {
+                enableEdgeToEdge()
                 Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
                     NavGraph(startDestination = viewModel.startDestination.value)
                 }
