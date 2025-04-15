@@ -20,13 +20,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.esm.taskify_news.presentation.common.NewsButton
 import com.esm.taskify_news.presentation.common.NewsTextButton
-import com.esm.taskify_news.presentation.onboarding.components.Dimens.MediumPadding2
+import com.esm.taskify_news.presentation.Dimens.MediumPadding2
 import com.esm.taskify_news.presentation.onboarding.components.OnBoardingPage
 import com.esm.taskify_news.presentation.onboarding.components.PageIndicator
 import kotlinx.coroutines.launch
 
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(onEvent: (OnBoardingEvent) -> Unit) {
+
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(initialPage = 0) {
             pages.size
@@ -67,32 +68,30 @@ fun OnBoardingScreen() {
                         text = buttonState.value[0],
                         onClick = {
                             scope.launch {
-                                pagerState.animateScrollToPage(page = pagerState.currentPage - 1)
+                                pagerState.animateScrollToPage(
+                                    page = pagerState.currentPage - 1
+                                )
                             }
-                        })
+                        }
+                    )
                 }
-
                 NewsButton(
                     text = buttonState.value[1],
                     onClick = {
                         scope.launch {
-                            if (pagerState.currentPage == 3) {
-                                //TODO: Navigate to the main screen and save a value in DataStore
+                            if (pagerState.currentPage == 2) {
+                                onEvent(OnBoardingEvent.SaveAppEntry)
                             } else {
                                 pagerState.animateScrollToPage(
                                     page = pagerState.currentPage + 1
                                 )
                             }
                         }
-
-
-                    })
+                    }
+                )
             }
-
         }
         Spacer(modifier = Modifier.weight(0.5f))
-
-
     }
 }
 

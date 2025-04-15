@@ -29,6 +29,7 @@ import com.esm.taskify.feature_todo.presentation.util.Screen.TodoNewUpdateScreen
 import com.esm.taskify.ui.theme.TodoTheme
 import com.esm.taskify_news.domain.usecases.app_entry.AppEntryUseCases
 import com.esm.taskify_news.presentation.onboarding.OnBoardingScreen
+import com.esm.taskify_news.presentation.onboarding.OnBoardingViewModel
 import com.esm.taskify_news.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -39,19 +40,17 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var appEntryUseCases: AppEntryUseCases
-
-
+    lateinit var useCases: AppEntryUseCases
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen()
-        lifecycleScope.launch {
-            appEntryUseCases.readAppEntry().collect {
-                Log.d("ESM", "onCreate: $it")
 
+        lifecycleScope.launch {
+            useCases.readAppEntry().collect {
+                Log.d("ESM", "onCreate: $it")
             }
         }
 
@@ -59,7 +58,9 @@ class MainActivity : ComponentActivity() {
             NewsAppTheme {
                 Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background))
                 {
-                    OnBoardingScreen()
+                    val viewModel: OnBoardingViewModel = hiltViewModel()
+                    OnBoardingScreen(onEvent = viewModel::onEvent)
+
                 }
             }
             //TodoFunction()

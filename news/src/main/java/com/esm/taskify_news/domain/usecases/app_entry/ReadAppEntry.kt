@@ -5,11 +5,11 @@ import kotlinx.coroutines.flow.Flow
 
 
 class ReadAppEntry(
-    private val localUserManger: LocalUserManager
+    private val localUserManager: LocalUserManager
 ) {
 
     operator fun invoke(): Flow<Boolean> {
-        return localUserManger.readAppEntry()
+        return localUserManager.readAppEntry()
     }
 
 }

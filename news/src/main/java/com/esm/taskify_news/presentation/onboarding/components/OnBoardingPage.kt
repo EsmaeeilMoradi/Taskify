@@ -1,6 +1,5 @@
 package com.esm.taskify_news.presentation.onboarding.components
 
-import android.content.res.Configuration
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -14,15 +13,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.ModifierLocalReadScope
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.esm.taskify.news.R
+import com.esm.taskify_news.presentation.Dimens.MediumPadding1
+import com.esm.taskify_news.presentation.Dimens.MediumPadding2
 import com.esm.taskify_news.presentation.onboarding.Page
-import com.esm.taskify_news.presentation.onboarding.components.Dimens.MediumPadding1
-import com.esm.taskify_news.presentation.onboarding.components.Dimens.MediumPadding2
 import com.esm.taskify_news.ui.theme.NewsAppTheme
 
 @Composable

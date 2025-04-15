@@ -1,7 +1,6 @@
-package com.esm.taskify_news.presentation.onboarding.components
+package com.esm.taskify_news.presentation
 
 import androidx.compose.ui.unit.dp
-
 
 object Dimens {
 

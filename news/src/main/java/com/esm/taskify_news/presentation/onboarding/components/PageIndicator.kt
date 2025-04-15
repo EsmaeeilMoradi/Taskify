@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import com.esm.taskify_news.presentation.onboarding.components.Dimens.IndicatorSize
+import com.esm.taskify_news.presentation.Dimens.IndicatorSize
 import com.esm.taskify_news.ui.theme.BlueGray
 
 @Composable
