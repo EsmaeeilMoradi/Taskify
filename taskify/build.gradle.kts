@@ -102,4 +102,14 @@ dependencies {
 
     //Splash Api
     implementation(libs.androidx.core.splashscreen)
+
+    //Coil
+    implementation(libs.coil.compose)
+
+    //Paging 3
+    implementation (libs.androidx.paging)
+    implementation (libs.androidx.paging.compose)
+
+
+
 }

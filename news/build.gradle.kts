@@ -91,7 +91,9 @@ dependencies {
     //Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
-
+    //Paging 3
+    implementation (libs.androidx.paging)
+    implementation (libs.androidx.paging.compose)
 
 
 }
