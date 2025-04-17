@@ -12,7 +12,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -49,8 +51,10 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+
         setContent {
             NewsAppTheme {
+
                 enableEdgeToEdge()
                 Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
                     NavGraph(startDestination = viewModel.startDestination.value)

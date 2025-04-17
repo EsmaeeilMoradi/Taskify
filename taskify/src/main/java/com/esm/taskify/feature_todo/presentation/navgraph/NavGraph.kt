@@ -1,12 +1,12 @@
 package com.esm.taskify.feature_todo.presentation.navgraph
 
-
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navigation
+import com.esm.taskify.feature_todo.presentation.news_navigator.NewsNavigator
 import com.esm.taskify_news.presentation.onboarding.OnBoardingScreen
 import com.esm.taskify_news.presentation.onboarding.OnBoardingViewModel
 
@@ -30,19 +30,10 @@ fun NavGraph(
 
         navigation(
             route = Route.NewsNavigation.route,
-            startDestination = Route.HomeScreen.route
+            startDestination = Route.NewsNavigatorScreen.route
         ) {
-            composable(route = Route.HomeScreen.route) {
-
-            }
-            composable(route = Route.SearchScreen.route) {
-
-            }
-            composable(route = Route.BookmarkScreen.route) {
-
-            }
-            composable(route = Route.DetailsScreen.route) {
-
+            composable(route = Route.NewsNavigatorScreen.route){
+                NewsNavigator()
             }
         }
     }

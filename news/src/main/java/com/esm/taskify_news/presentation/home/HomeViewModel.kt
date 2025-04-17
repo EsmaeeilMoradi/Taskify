@@ -1,17 +1,20 @@
 package com.esm.taskify_news.presentation.home
 
 
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import androidx.paging.filter
 import com.esm.taskify_news.domain.usecases.news.NewsUseCases
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+
+@Module
+@InstallIn(ViewModelComponent::class)
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val newsUseCases: NewsUseCases

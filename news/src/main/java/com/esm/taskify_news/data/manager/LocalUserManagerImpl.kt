@@ -6,7 +6,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
-
 import com.esm.taskify_news.domain.manager.LocalUserManager
 import com.esm.taskify_news.util.Constants
 import com.esm.taskify_news.util.Constants.USER_SETTINGS

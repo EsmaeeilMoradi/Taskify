@@ -1,6 +1,7 @@
-package com.esm.taskify_news.domain.model
+package com.esm.taskify_news.domain.repository
 
 import androidx.paging.PagingData
+import com.esm.taskify_news.domain.model.Article
 import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
