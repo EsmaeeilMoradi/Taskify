@@ -47,8 +47,8 @@ fun SearchBar(
         MutableInteractionSource()
     }
     val isClicked = interactionSource.collectIsPressedAsState().value
-    LaunchedEffect(key1 = isClicked){
-        if(isClicked){
+    LaunchedEffect(key1 = isClicked) {
+        if (isClicked) {
             onClick?.invoke()
         }
     }
@@ -77,15 +77,13 @@ fun SearchBar(
                 )
             },
             shape = MaterialTheme.shapes.medium,
-//            colors = TextFieldDefaults.textFieldColors(
-//                containerColor = colorResource(id = R.color.input_background),
-//                textColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
-//                cursorColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
-//                disabledIndicatorColor = Color.Transparent,
-//                errorIndicatorColor = Color.Transparent,
-//                focusedIndicatorColor = Color.Transparent,
-//                unfocusedIndicatorColor = Color.Transparent
-//            ),
+            colors = TextFieldDefaults.colors(
+                cursorColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
+                disabledIndicatorColor = Color.Transparent,
+                errorIndicatorColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             keyboardActions = KeyboardActions(
