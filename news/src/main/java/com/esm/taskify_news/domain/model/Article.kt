@@ -1,5 +1,12 @@
 package com.esm.taskify_news.domain.model
 
+import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+@Entity
 data class Article(
     val author: String,
     val content: String,
@@ -7,6 +14,6 @@ data class Article(
     val publishedAt: String,
     val source: Source,
     val title: String,
-    val url: String,
+    @PrimaryKey val url: String,
     val urlToImage: String
-)
+) : Parcelable

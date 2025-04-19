@@ -17,7 +17,6 @@ navigationCompose = "2.9.0-alpha09"
 materialIconsExtended = "1.7.8"
 hiltNavigationCompose = "1.2.0"
 kotlinxCoroutinesCore = "1.10.1"
-kotlinxCoroutinesAndroid = "1.10.1"
 hiltCompilerVersion = "1.2.0"
 hiltAndroidCompiler = "2.56.1"
 roomKtx = "2.7.0-rc03"
@@ -58,7 +57,6 @@ androidx-material-icons-extended = { group = "androidx.compose.material", name =
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version = "1.7.3" }
-androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltCompilerVersion" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomRuntime" }
@@ -67,7 +65,6 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastorePreferences" }
@@ -80,6 +77,6 @@ androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", 
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotlinAndroidKsp = { id = "com.google.devtools.ksp", version.ref ="kspVersion" }
-hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref ="hiltVersion" }
+kotlinAndroidKsp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
 android-library = { id = "com.android.library", version.ref = "agp" }

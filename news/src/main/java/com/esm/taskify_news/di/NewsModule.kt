@@ -1,6 +1,10 @@
 package com.esm.taskify_news.di
 
 import android.app.Application
+import androidx.room.Room
+import com.esm.taskify_news.data.local.NewsDao
+import com.esm.taskify_news.data.local.NewsDatabase
+import com.esm.taskify_news.data.local.NewsTypeConvertor
 import com.esm.taskify_news.data.manager.LocalUserManagerImpl
 import com.esm.taskify_news.data.remote.NewsApi
 import com.esm.taskify_news.data.repository.NewsRepositoryImpl
@@ -71,5 +75,24 @@ object NewsModule {
         )
     }
 
+    @Provides
+    @Singleton
+    fun provideNewsDatabase(
+        application: Application
+    ): NewsDatabase {
+        return Room.databaseBuilder(
+            context = application,
+            klass = NewsDatabase::class.java,
+            name = "news_db"
+        ).addTypeConverter(NewsTypeConvertor())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDatabase: NewsDatabase
+    ): NewsDao = newsDatabase.newsDao
 
 }

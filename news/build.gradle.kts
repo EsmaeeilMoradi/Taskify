@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.kotlinAndroidKsp)
+    id("org.jetbrains.kotlin.plugin.parcelize")
 }
 
 android {
@@ -93,8 +94,11 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     //Paging 3
-    implementation (libs.androidx.paging)
-    implementation (libs.androidx.paging.compose)
+    implementation(libs.androidx.paging)
+    implementation(libs.androidx.paging.compose)
 
-
+    //Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 }
