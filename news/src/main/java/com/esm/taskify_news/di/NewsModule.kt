@@ -13,9 +13,13 @@ import com.esm.taskify_news.domain.model.NewsRepository
 import com.esm.taskify_news.domain.usecases.app_entry.AppEntryUseCases
 import com.esm.taskify_news.domain.usecases.app_entry.ReadAppEntry
 import com.esm.taskify_news.domain.usecases.app_entry.SaveAppEntry
+import com.esm.taskify_news.domain.usecases.news.DeleteArticle
+import com.esm.taskify_news.domain.usecases.news.GetArticle
+import com.esm.taskify_news.domain.usecases.news.GetArticles
 import com.esm.taskify_news.domain.usecases.news.GetNews
 import com.esm.taskify_news.domain.usecases.news.NewsUseCases
 import com.esm.taskify_news.domain.usecases.news.SearchNews
+import com.esm.taskify_news.domain.usecases.news.UpsertArticle
 import com.esm.taskify_news.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -67,11 +71,16 @@ object NewsModule {
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository
+        newsRepository: NewsRepository,
+        newsDao: NewsDao
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
-            searchNews = SearchNews(newsRepository)
+            searchNews = SearchNews(newsRepository),
+            upsertArticle = UpsertArticle(newsDao),
+            deleteArticle = DeleteArticle(newsDao),
+            getArticles = GetArticles(newsDao),
+            getArticle = GetArticle(newsDao)
         )
     }
 

@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import com.esm.taskify_news.domain.model.Article
 import com.esm.taskify_news.presentation.Dimens.ExtraSmallPadding2
@@ -20,8 +19,8 @@ import com.esm.taskify_news.presentation.home.components.ArticleCard
 @Composable
 fun ArticlesList(
     modifier: Modifier = Modifier,
-    articles: LazyPagingItems<Article>,
-    onClick:(Article) -> Unit
+    articles: List<Article>,
+    onClick: (Article) -> Unit
 ) {
 
     val handlePagingResult = handlePagingResult(articles)

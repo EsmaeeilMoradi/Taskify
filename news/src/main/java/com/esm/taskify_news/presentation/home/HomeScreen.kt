@@ -22,7 +22,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
 import com.esm.taskify.news.R
 import com.esm.taskify_news.domain.model.Article
